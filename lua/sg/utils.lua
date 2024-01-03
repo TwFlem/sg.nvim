@@ -151,7 +151,7 @@ utils._validate_node_output = function(output)
     -- Only then will we check if it's valid
     if version then
       local min_node_version = utils.get_min_node_version()
-      if not (vim.version.gt(version, min_node_version) or vim.version.eq(version, min_node_version)) then
+      if not vim.version.gt(version, min_node_version) then
         return false, string.format("node version must be >= %s. Got: %s", min_node_version, version)
       end
 
