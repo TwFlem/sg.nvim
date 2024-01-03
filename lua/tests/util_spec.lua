@@ -47,6 +47,14 @@ describe("sg.utils", function()
       eq("18.16.0", tostring(version))
     end)
 
+
+    it("should work when version is equal to min version", function()
+      local expected_min_node_version = utils.get_min_node_version()
+      local ok = utils._validate_node_output { expected_min_node_version }
+      eq(true, ok)
+    end)
+
+
     it("should work for just returning the string of the version, empty lines", function()
       local ok, version = utils._validate_node_output { "", "v18.16.0", "" }
       eq(true, ok)

@@ -150,8 +150,8 @@ utils._validate_node_output = function(output)
     --
     -- Only then will we check if it's valid
     if version then
-      local min_node_version = assert(vim.version.parse "v18")
-      if not vim.version.gt(version, min_node_version) then
+      local min_node_version = utils.get_min_node_version()
+      if not (vim.version.gt(version, min_node_version) or vim.version.eq(version, min_node_version)) then
         return false, string.format("node version must be >= %s. Got: %s", min_node_version, version)
       end
 
@@ -161,6 +161,11 @@ utils._validate_node_output = function(output)
 
   return false, string.format("unable to determine node version: %s", vim.inspect(output))
 end
+
+utils.get_min_node_version = function ()
+      return assert(vim.version.parse "v18")
+end
+
 
 utils.blocking = function(req, timeout)
   local results
