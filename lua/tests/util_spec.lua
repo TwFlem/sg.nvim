@@ -49,8 +49,7 @@ describe("sg.utils", function()
 
 
     it("should work when version is equal to min version", function()
-      local expected_min_node_version = utils.get_min_node_version()
-      local ok = utils._validate_node_output { expected_min_node_version }
+      local ok = utils._validate_node_output { "v12.16.0" }
       eq(true, ok)
     end)
 
